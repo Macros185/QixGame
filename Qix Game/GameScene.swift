@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Static Variables
     let enemy1 = SKSpriteNode(imageNamed: "triangle")
     let enemy2 = SKSpriteNode(imageNamed: "triangle")
+    var enemies = [Enemy]()
     let player = SKSpriteNode(imageNamed: "triangle")
     let background = SKSpriteNode(imageNamed:"background-vertical-2")
     
@@ -41,7 +42,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = borderBody
         self.physicsBody?.friction = 0.0
         
-        enemy1.name = "Triangle1"
+        var enemy1 = Enemy(enemySpriteName: "triangle", name: "Triangle1", position: CGPoint(x: background.position.x + 300, y: background.position.y + 50), zPosition: 9)
+        enemy1.sprite.physicsBody = Enemy().initializePhysicsBody(enemy1.sprite.texture!, size: enemy1.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 0, mass: 10, collisionBitMask: 1, contactBitMask: 2)
+        
+        /*enemy1.name = "Triangle1"
         enemy1.size = CGSizeMake(enemy1.size.width * 2.0, enemy1.size.height * 2.0)
         enemy1.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle"), size: enemy1.size)
         enemy1.physicsBody?.dynamic = true
@@ -53,9 +57,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy1.physicsBody?.collisionBitMask = 1
         enemy1.physicsBody?.contactTestBitMask = 2
         enemy1.position = CGPoint(x: background.position.x + 300, y: background.position.y + 50)
-        enemy1.zPosition = 9
+        enemy1.zPosition = 9*/
+        var enemy2 = Enemy(enemySpriteName: "triangle", name: "Triangle2", position: CGPoint(x: background.position.x + 300, y: background.position.y + 500), zPosition: 9)
+        enemy2.sprite.physicsBody = Enemy().initializePhysicsBody(enemy2.sprite.texture!, size: enemy2.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 0, mass: 10, collisionBitMask: 1, contactBitMask: 2)
         
-        enemy2.name = "Triangle2"
+        /*enemy2.name = "Triangle2"
         enemy2.size = CGSizeMake(enemy2.size.width * 2.0, enemy2.size.height * 2.0)
         enemy2.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle"), size: enemy2.size)
         enemy2.physicsBody?.dynamic = true
@@ -67,13 +73,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemy2.physicsBody?.collisionBitMask = 1
         enemy2.physicsBody?.contactTestBitMask = 3
         enemy2.position = CGPoint(x: background.position.x + 300, y: background.position.y + 500)
-        enemy2.zPosition = 9
+        enemy2.zPosition = 9*/
+        var enemy3 = Enemy(enemySpriteName: "triangle", name: "Triangle3", position: CGPoint(x: background.position.x + 300, y: background.position.y + 350), zPosition: 9)
+        enemy3.sprite.physicsBody = Enemy().initializePhysicsBody(enemy3.sprite.texture!, size: enemy3.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 0, mass: 10, collisionBitMask: 1, contactBitMask: 2)
         
-        self.addChild(enemy2)
-        self.addChild(enemy1)
+        enemies.insert(enemy1, atIndex:0)
+        enemies.insert(enemy2, atIndex:0)
+        enemies.insert(enemy3, atIndex:0)
         
-        enemy1.physicsBody?.applyForce(CGVectorMake(0, 20))
-        enemy2.physicsBody?.applyForce(CGVectorMake(0, -20))
+        self.addChild(enemies[0].sprite)
+        self.addChild(enemies[1].sprite)
+        self.addChild(enemies[2].sprite)
+        
+        enemies[0].sprite.physicsBody?.applyForce(CGVectorMake(0, 20))
+        enemies[1].sprite.physicsBody?.applyForce(CGVectorMake(0, -20))
+        enemies[2].sprite.physicsBody?.applyForce(CGVectorMake(0, 5))
         
         
         player.name = "Player"
@@ -214,8 +228,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.position.y = 11
         }
         
+        for enemy in enemies{
+            if(enemy.sprite.physicsBody?.angularVelocity < -5){
+                enemy.sprite.physicsBody?.angularVelocity = -5
+            }
+            else if(enemy.sprite.physicsBody?.angularVelocity > 5){
+                enemy.sprite.physicsBody?.angularVelocity = 5
+            }
+            
+            if(enemy.sprite.physicsBody?.velocity.dx < 0){
+                enemy.sprite.physicsBody?.velocity.dx = -300
+            }
+            else{
+                enemy.sprite.physicsBody?.velocity.dx = 300
+            }
+            
+            if(enemy.sprite.physicsBody?.velocity.dy < 0){
+                enemy.sprite.physicsBody?.velocity.dy = -300
+            }
+            else{
+                enemy.sprite.physicsBody?.velocity.dy = 300
+            }
+        }
         
-        if enemy1.physicsBody?.angularVelocity < -5 {
+        
+        /*if enemy1.physicsBody?.angularVelocity < -5 {
             enemy1.physicsBody?.angularVelocity = -5
         }
         else if enemy1.physicsBody?.angularVelocity > 5 {
@@ -260,7 +297,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             enemy2.physicsBody?.velocity.dy = 400
-        }
+        }*/
         
         processContactsForUpdate(currentTime)
         
@@ -311,7 +348,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if (name1?.lowercaseString.rangeOfString("triangle") != nil) && (name2?.lowercaseString.rangeOfString("triangle") != nil) {
             var nodeB = contact.bodyB.node? as SKSpriteNode
-            nodeB.size = CGSizeMake(80.0, 70.0)
+            if(nodeB.size.width != 80.0)
+            {
+                nodeB.size = CGSizeMake(80.0, 70.0)
+                var mass = CGFloat(arc4random_uniform(9) + 1)
+                //nodeB.physicsBody = SKPhysicsBody(texture: nodeB.texture, size: nodeB.size)
+                nodeB.physicsBody = Enemy().initializePhysicsBody(nodeB.texture!, size: nodeB.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 0, mass: mass, collisionBitMask: 1, contactBitMask: 2)
+            }
         }
     }
     
