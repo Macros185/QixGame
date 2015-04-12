@@ -194,23 +194,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         
-//        if player.texture!.size().width + player.position.x >= self.frame.width + 7 {
-//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-//            player.position.x = self.frame.width + 7 - player.texture!.size().width - 1
-//        }
-//        else if player.position.x <= 14 {
-//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-//            player.position.x = 15
-//        }
-//        
-//        if player.texture!.size().height + player.position.y >= self.frame.height + 7 {
-//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-//            player.position.y = self.frame.height + 7 - player.texture!.size().height - 1
-//        }
-//        else if player.position.y <= 10 {
-//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-//            player.position.y = 11
-//        }
+        if player.texture!.size().width + player.position.x >= self.frame.width + 7 {
+            //player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+            //player.position.x = self.frame.width + 7 - player.texture!.size().width - 1
+        }
+        else if player.position.x <= 14 {
+            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+            player.position.x = 15
+        }
         
         // Do for each enemy.
         for enemy in enemies{
