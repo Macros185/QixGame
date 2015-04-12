@@ -63,7 +63,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         enemies[1].sprite.physicsBody?.applyForce(CGVectorMake(0, -20))
         enemies[2].sprite.physicsBody?.applyForce(CGVectorMake(0, 5))
         
-        
         player.name = "Player"
         player.size = CGSizeMake(player.size.width, player.size.height)
         player.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle"), size: player.size)
@@ -115,42 +114,67 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             switch swipeGesture.direction{
             case UISwipeGestureRecognizerDirection.Right:
                 if player.texture!.size().width + player.position.x < self.frame.width + 7 {
+                    player.texture = SKTexture(imageNamed: "triangle-right")
+                    player.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle-right"), size: player.size)
                     player.physicsBody?.velocity.dy = 0.0
                     player.physicsBody?.velocity.dx = 0.0
-                    player.physicsBody?.applyForce(CGVectorMake(70, 0))
+                    player.physicsBody?.velocity.dx = 300.0
                     deltaX = 20
                     deltaY = 0
                     currentDirection = "right"
+                    player.physicsBody?.dynamic = true
+                    player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.collisionBitMask = 0
+                    player.physicsBody?.contactTestBitMask = 3
                 }
             
             case UISwipeGestureRecognizerDirection.Left:
                 if player.position.x > 14 {
+                    player.texture = SKTexture(imageNamed: "triangle-left")
+                    player.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle-left"), size: player.size)
                     player.physicsBody?.velocity.dy = 0.0
                     player.physicsBody?.velocity.dx = 0.0
-                    player.physicsBody?.applyForce(CGVectorMake(-70, 0))
+                    player.physicsBody?.velocity.dx = -300.0
                     deltaX = -20
                     deltaY = 0
                     currentDirection = "left"
+                    player.physicsBody?.dynamic = true
+                    player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.collisionBitMask = 0
+                    player.physicsBody?.contactTestBitMask = 3
                 }
                 
             case UISwipeGestureRecognizerDirection.Up:
                 if player.texture!.size().height + player.position.y < self.frame.height + 7 {
+                    player.texture = SKTexture(imageNamed: "triangle-up")
+                    player.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle-up"), size: player.size)
                     player.physicsBody?.velocity.dx = 0.0
                     player.physicsBody?.velocity.dy = 0.0
-                    player.physicsBody?.applyForce(CGVectorMake(0, 70))
+                    player.physicsBody?.velocity.dy = 300.0
                     deltaX = 0
                     deltaY = 20
                     currentDirection = "up"
+                    player.physicsBody?.dynamic = true
+                    player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.collisionBitMask = 0
+                    player.physicsBody?.contactTestBitMask = 3
                 }
                 
             case UISwipeGestureRecognizerDirection.Down:
                 if player.position.y > 10 {
+                    player.texture = SKTexture(imageNamed: "triangle-down")
+                    player.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed: "triangle-down"), size: player.size)
                     player.physicsBody?.velocity.dx = 0.0
                     player.physicsBody?.velocity.dy = 0.0
-                    player.physicsBody?.applyForce(CGVectorMake(0, -70))
+                    player.physicsBody?.velocity.dy = -300.0
+
                     deltaX = 0
                     deltaY = -20
                     currentDirection = "down"
+                    player.physicsBody?.dynamic = true
+                    player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.collisionBitMask = 0
+                    player.physicsBody?.contactTestBitMask = 3
                 }
 
             default:
