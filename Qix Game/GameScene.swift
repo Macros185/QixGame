@@ -229,6 +229,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         for enemy in enemies{
+            if(enemy.sprite.position.x < 30){
+                enemy.sprite.position.x = 50
+            }
             if(enemy.sprite.physicsBody?.angularVelocity < -5){
                 enemy.sprite.physicsBody?.angularVelocity = -5
             }
