@@ -39,8 +39,6 @@ class Enemy: SKSpriteNode {
         self.sprite.size = CGSizeMake(self.sprite.texture!.size().width * 2.0, self.sprite.texture!.size().height * 2.0)
     }
     
-    
-    
     override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
         self.sprite = SKSpriteNode()
         super.init(texture: texture, color: color, size: size)

@@ -190,34 +190,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
     override func update(currentTime: CFTimeInterval) {
         
-        if player.texture!.size().width + player.position.x >= self.frame.width + 7 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.x = self.frame.width + 7 - player.texture!.size().width - 1
-        }
-        else if player.position.x <= 14 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.x = 15
-        }
+//        if player.texture!.size().width + player.position.x >= self.frame.width + 7 {
+//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+//            player.position.x = self.frame.width + 7 - player.texture!.size().width - 1
+//        }
+//        else if player.position.x <= 14 {
+//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+//            player.position.x = 15
+//        }
+//        
+//        if player.texture!.size().height + player.position.y >= self.frame.height + 7 {
+//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+//            player.position.y = self.frame.height + 7 - player.texture!.size().height - 1
+//        }
+//        else if player.position.y <= 10 {
+//            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+//            player.position.y = 11
+//        }
         
-        
-        if player.texture!.size().height + player.position.y >= self.frame.height + 7 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.y = self.frame.height + 7 - player.texture!.size().height - 1
-        }
-        else if player.position.y <= 10 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.y = 11
-        }
-        
+        // Do for each enemy.
         for enemy in enemies{
-            if((enemy.sprite.position.x > 725 && enemy.sprite.position.y > 999) && enemy.sprite.physicsBody?.velocity.dx == 0){
-                enemy.sprite.physicsBody?.velocity.dx = -300
-                enemy.sprite.physicsBody?.velocity.dy = -300
-            }
-            if(enemy.sprite.position.x < 30){
-                enemy.sprite.position.x += 20
-                enemy.sprite.physicsBody?.velocity.dx = 300
-            }
+            // Constricts angular velocity within given range.
             if(enemy.sprite.physicsBody?.angularVelocity < -5){
                 enemy.sprite.physicsBody?.angularVelocity = -5
             }
@@ -225,6 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.sprite.physicsBody?.angularVelocity = 5
             }
             
+            // Constricts x velocity within given range.
             if(enemy.sprite.physicsBody?.velocity.dx < 0){
                 enemy.sprite.physicsBody?.velocity.dx = -300
             }
@@ -232,6 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 enemy.sprite.physicsBody?.velocity.dx = 300
             }
             
+            // Constricts y velocity within given range.
             if(enemy.sprite.physicsBody?.velocity.dy < 0){
                 enemy.sprite.physicsBody?.velocity.dy = -300
             }
