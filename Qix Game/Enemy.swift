@@ -61,6 +61,7 @@ class Enemy: SKSpriteNode {
         physicsBody.mass = mass
         physicsBody.collisionBitMask = collisionBitMask
         physicsBody.contactTestBitMask = contactBitMask
+        physicsBody.usesPreciseCollisionDetection = true
         return physicsBody
     }
 }
