@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494B11591ADB3A8A0047F135 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494B11581ADB3A8A0047F135 /* Constants.swift */; };
 		4998CFE81AD792DC00FF78BB /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4998CFE71AD792DC00FF78BB /* Enemy.swift */; };
 		B53CFDA41ADB3E6A00A03F28 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53CFDA31ADB3E6A00A03F28 /* Constants.swift */; };
 		B5CD0A281AC4FBA700D013F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD0A271AC4FBA700D013F7 /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		494B11581ADB3A8A0047F135 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4998CFE71AD792DC00FF78BB /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		B53CFDA31ADB3E6A00A03F28 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B5CD0A221AC4FBA700D013F7 /* Qix Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Qix Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 				B5CD0A341AC4FBA700D013F7 /* LaunchScreen.xib */,
 				B5CD0A251AC4FBA700D013F7 /* Supporting Files */,
 				4998CFE71AD792DC00FF78BB /* Enemy.swift */,
+				494B11581ADB3A8A0047F135 /* Constants.swift */,
 			);
 			path = "Qix Game";
 			sourceTree = "<group>";
