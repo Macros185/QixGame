@@ -228,7 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B53CFDA41ADB3E6A00A03F28 /* Constants.swift in Sources */,
+				494B11591ADB3A8A0047F135 /* Constants.swift in Sources */,
 				4998CFE81AD792DC00FF78BB /* Enemy.swift in Sources */,
 				B5CD0A2C1AC4FBA700D013F7 /* GameScene.swift in Sources */,
 				B5CD0A2E1AC4FBA700D013F7 /* GameViewController.swift in Sources */,
