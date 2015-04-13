@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		494B11591ADB3A8A0047F135 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494B11581ADB3A8A0047F135 /* Constants.swift */; };
 		4998CFE81AD792DC00FF78BB /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4998CFE71AD792DC00FF78BB /* Enemy.swift */; };
 		B5CD0A281AC4FBA700D013F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD0A271AC4FBA700D013F7 /* AppDelegate.swift */; };
 		B5CD0A2A1AC4FBA700D013F7 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = B5CD0A291AC4FBA700D013F7 /* GameScene.sks */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		494B11581ADB3A8A0047F135 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4998CFE71AD792DC00FF78BB /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		B5CD0A221AC4FBA700D013F7 /* Qix Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Qix Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5CD0A261AC4FBA700D013F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				B5CD0A341AC4FBA700D013F7 /* LaunchScreen.xib */,
 				B5CD0A251AC4FBA700D013F7 /* Supporting Files */,
 				4998CFE71AD792DC00FF78BB /* Enemy.swift */,
+				494B11581ADB3A8A0047F135 /* Constants.swift */,
 			);
 			path = "Qix Game";
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494B11591ADB3A8A0047F135 /* Constants.swift in Sources */,
 				4998CFE81AD792DC00FF78BB /* Enemy.swift in Sources */,
 				B5CD0A2C1AC4FBA700D013F7 /* GameScene.swift in Sources */,
 				B5CD0A2E1AC4FBA700D013F7 /* GameViewController.swift in Sources */,
