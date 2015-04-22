@@ -7,5 +7,5 @@
 //
 
 public class Constants{
-    let playerCollisionBitMask:UInt32 = 0
+    let playerCollisionBitMask:UInt32 = 1
 }
