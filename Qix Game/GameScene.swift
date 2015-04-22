@@ -40,19 +40,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = borderBody
         self.physicsBody?.collisionBitMask = 5
         self.physicsBody?.usesPreciseCollisionDetection = true
-        self.physicsBody?.friction = 0.0
+        self.physicsBody?.friction = 100000000
+        self.physicsBody?.restitution = 0.0
+        self.physicsBody?.linearDamping = 0
+        self.physicsBody?.angularDamping = 0
         
         var enemy1 = Enemy(enemySpriteName: "triangle", name: "Triangle1", position: CGPoint(x: background.position.x + 300, y: background.position.y + 50), zPosition: 9)
-        enemy1.sprite.physicsBody = Enemy().initializePhysicsBody(enemy1.sprite.texture!, size: enemy1.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 1.0, mass: 1, collisionBitMask: 4, contactBitMask: 2)
+        enemy1.sprite.physicsBody = Enemy().initializePhysicsBody(enemy1.sprite.texture!, size: enemy1.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 1.0, mass: 1, collisionBitMask: 0, contactBitMask: 2)
         //Stops rotation
         enemy1.sprite.physicsBody?.allowsRotation = false
         
         var enemy2 = Enemy(enemySpriteName: "triangle", name: "Triangle2", position: CGPoint(x: background.position.x + 300, y: background.position.y + 500), zPosition: 9)
-        enemy2.sprite.physicsBody = Enemy().initializePhysicsBody(enemy2.sprite.texture!, size: enemy2.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 1.0, mass: 1, collisionBitMask: 3, contactBitMask: 2)
+        enemy2.sprite.physicsBody = Enemy().initializePhysicsBody(enemy2.sprite.texture!, size: enemy2.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 1.0, mass: 1, collisionBitMask: 0, contactBitMask: 2)
         enemy2.sprite.physicsBody?.allowsRotation = false
         
         var enemy3 = Enemy(enemySpriteName: "triangle", name: "Triangle3", position: CGPoint(x: background.position.x + 300, y: background.position.y + 350), zPosition: 9)
-        enemy3.sprite.physicsBody = Enemy().initializePhysicsBody(enemy3.sprite.texture!, size: enemy3.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 1.0, mass: 1, collisionBitMask: 2, contactBitMask: 2)
+        enemy3.sprite.physicsBody = Enemy().initializePhysicsBody(enemy3.sprite.texture!, size: enemy3.sprite.size, isDynamic: true, isAffectedByGravity: false, linearDamping: 0, friction: 0, restitution: 1.0, angularDamping: 1.0, mass: 1, collisionBitMask: 0, contactBitMask: 2)
         enemy3.sprite.physicsBody?.allowsRotation = false
         
         enemies.insert(enemy1, atIndex:0)
@@ -73,13 +76,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.dynamic = true
         player.physicsBody?.affectedByGravity = false
         player.physicsBody?.linearDamping = 0
-        player.physicsBody?.friction = 0
+        player.physicsBody?.friction = 100000000
         player.physicsBody?.restitution = 0.0
         player.physicsBody?.angularDamping = 0
         player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
         player.physicsBody?.contactTestBitMask = 3
         player.position = CGPoint(x: background.position.x + 15, y: background.position.y + 15)
         player.zPosition = 9
+        player.physicsBody?.allowsRotation = false
         
         self.addChild(player)
         
@@ -128,8 +132,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     currentDirection = "right"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.friction = 100000000
+                    player.physicsBody?.restitution = 0.0
+                    player.physicsBody?.linearDamping = 0
+                    player.physicsBody?.angularDamping = 0
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
+                    player.physicsBody?.allowsRotation = false
                 }
             
             case UISwipeGestureRecognizerDirection.Left:
@@ -144,8 +153,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     currentDirection = "left"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.friction = 100000000
+                    player.physicsBody?.restitution = 0.0
+                    player.physicsBody?.linearDamping = 0
+                    player.physicsBody?.angularDamping = 0
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
+                    player.physicsBody?.allowsRotation = false
                 }
                 
             case UISwipeGestureRecognizerDirection.Up:
@@ -160,8 +174,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     currentDirection = "up"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.friction = 100000000
+                    player.physicsBody?.restitution = 0.0
+                    player.physicsBody?.linearDamping = 0
+                    player.physicsBody?.angularDamping = 0
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
+                    player.physicsBody?.allowsRotation = false
                 }
                 
             case UISwipeGestureRecognizerDirection.Down:
@@ -177,8 +196,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     currentDirection = "down"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
+                    player.physicsBody?.friction = 100000000
+                    player.physicsBody?.restitution = 0.0
+                    player.physicsBody?.linearDamping = 0
+                    player.physicsBody?.angularDamping = 0
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
+                    player.physicsBody?.allowsRotation = false
                 }
 
             default:
@@ -210,7 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if player.position.y <= 10 {
             player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
             player.position.y = 11
-        }
+        }*/
         
         // Do for each enemy.
         for enemy in enemies{
