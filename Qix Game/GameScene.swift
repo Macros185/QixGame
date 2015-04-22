@@ -234,7 +234,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if player.position.y <= 10 {
             player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
             player.position.y = 11
-        }*/
+        }
         
         // Do for each enemy.
         for enemy in enemies{
@@ -311,7 +311,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var name2 = contact.bodyB.node?.name
         
         if (name1?.lowercaseString.rangeOfString("triangle") != nil) && (name2?.lowercaseString.rangeOfString("triangle") != nil) {
-            var nodeB = contact.bodyB.node? as SKSpriteNode
+            var nodeB = contact.bodyB.node as! SKSpriteNode
             if(nodeB.size.width != 80.0)
             {
                 nodeB.size = CGSizeMake(80.0, 70.0)
