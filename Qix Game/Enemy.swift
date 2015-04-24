@@ -50,7 +50,7 @@ class Enemy: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    internal func initializePhysicsBody(texture: SKTexture, size: CGSize, isDynamic: Bool, isAffectedByGravity: Bool, linearDamping: CGFloat, friction: CGFloat, restitution: CGFloat, angularDamping: CGFloat, mass: CGFloat, collisionBitMask: UInt32, contactBitMask: UInt32) -> SKPhysicsBody{
+    internal func initializePhysicsBody(texture: SKTexture, size: CGSize, isDynamic: Bool, isAffectedByGravity: Bool, linearDamping: CGFloat, friction: CGFloat, restitution: CGFloat, angularDamping: CGFloat, mass: CGFloat, collisionBitMask: UInt32, contactBitMask: UInt32, categoryBitMask: UInt32) -> SKPhysicsBody{
         var physicsBody = SKPhysicsBody(texture: texture, size: size)
         physicsBody.dynamic = isDynamic
         physicsBody.affectedByGravity = isAffectedByGravity
@@ -61,6 +61,7 @@ class Enemy: SKSpriteNode {
         physicsBody.mass = mass
         physicsBody.collisionBitMask = collisionBitMask
         physicsBody.contactTestBitMask = contactBitMask
+        physicsBody.categoryBitMask = categoryBitMask
         physicsBody.usesPreciseCollisionDetection = true
         return physicsBody
     }

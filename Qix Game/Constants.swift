@@ -7,5 +7,14 @@
 //
 
 public class Constants{
+    //Bit Masks
+    //Collision
     let playerCollisionBitMask:UInt32 = 1
+    let enemyCollisionBitMask:UInt32 = 1
+    let borderCollisionBitMask:UInt32 = 8
+    
+    //Category
+    let playerCategoryBitMask:UInt32 = 1 << 0
+    let enemyCategoryBitMask:UInt32 = 1 << 1
+    let borderCategoryBitMask:UInt32 = 1 << 2
 }
