@@ -12,14 +12,14 @@ import SpriteKit
 class Enemy: SKSpriteNode {
     var sprite: SKSpriteNode
     
-    override init(){
+    init(){
         self.sprite = SKSpriteNode(imageNamed: "triangle")
-        super.init()
+        super.init(texture:self.sprite.texture, color:UIColor.clearColor(), size:self.sprite.texture!.size())
     }
     
     init(enemySprite: SKSpriteNode, name: String, size: CGSize, physicsBody: SKPhysicsBody, position: CGPoint, zPosition: CGFloat){
         self.sprite = enemySprite
-        super.init()
+        super.init(texture:self.sprite.texture, color:UIColor.clearColor(), size:self.sprite.texture!.size())
         self.sprite.name = name
         self.sprite.size = size
         self.sprite.physicsBody = physicsBody
@@ -29,7 +29,7 @@ class Enemy: SKSpriteNode {
     
     init(enemySpriteName: String, name: String, position: CGPoint, zPosition: CGFloat){
         self.sprite = SKSpriteNode(imageNamed: enemySpriteName)
-        super.init()
+        super.init(texture:self.sprite.texture, color:UIColor.clearColor(), size:self.sprite.texture!.size())
         self.sprite.name = name
         //self.size = size
         //self.physicsBody = physicsBody
@@ -38,8 +38,6 @@ class Enemy: SKSpriteNode {
         self.sprite.texture = SKTexture(imageNamed: "triangle")
         self.sprite.size = CGSizeMake(self.sprite.texture!.size().width * 2.0, self.sprite.texture!.size().height * 2.0)
     }
-    
-    
     
     override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
         self.sprite = SKSpriteNode()
