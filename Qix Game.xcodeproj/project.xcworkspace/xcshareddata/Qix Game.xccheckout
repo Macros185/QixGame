@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>04C5310D-36B0-43C9-AAA1-57A88113F503</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Qix Game</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>409CFB63DDE7B8972FB74A942CFC9890121D76FA</key>
+		<string>https://github.com/Macros185/QixGame</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Qix Game.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>409CFB63DDE7B8972FB74A942CFC9890121D76FA</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Macros185/QixGame</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>409CFB63DDE7B8972FB74A942CFC9890121D76FA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>409CFB63DDE7B8972FB74A942CFC9890121D76FA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>QixGame</string>
+		</dict>
+	</array>
+</dict>
+</plist>

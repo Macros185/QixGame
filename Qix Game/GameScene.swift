@@ -16,13 +16,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Dynamic Variables
     var lines: [SKShapeNode] = []
+    var turnPositions: [CGPoint] = []
     var contactQueue = [SKPhysicsContact]()
-    var turnPosition: CGPoint = CGPoint()
     var isProcessingCollision = false
-    var deltaX: CGFloat = 0
-    var deltaY: CGFloat = 0
-    var lastDirection = ""
-    var currentDirection = ""
+    var lastDirection = "up"
+    var currentDirection = "up"
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -85,11 +83,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.categoryBitMask = Constants().playerCategoryBitMask
         player.position = CGPoint(x: background.position.x + 15, y: background.position.y + 15)
         player.zPosition = 9
-        player.physicsBody?.allowsRotation = false
         
         self.addChild(player)
         
-        turnPosition = CGPoint(x: background.position.x + 15, y: background.position.y + 15)
+        // Initialize turnPosition and lines variables to be used later.
+        turnPositions.append(CGPoint(x: background.position.x + 15, y: background.position.y + 15))
         lines.append(SKShapeNode())
         
         var swipeRight = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture:")
@@ -115,8 +113,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func respondToGesture (gesture: UIGestureRecognizer) {
         player.physicsBody?.velocity.dx = 0.0
         player.physicsBody?.velocity.dy = 0.0
-        deltaX = 0
-        deltaY = 0
     }
     
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -129,9 +125,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.velocity.dy = 0.0
                     player.physicsBody?.velocity.dx = 0.0
                     player.physicsBody?.velocity.dx = 300.0
-                    deltaX = 20
-                    deltaY = 0
-                    currentDirection = "right"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
                     player.physicsBody?.friction = 100000000
@@ -141,6 +134,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
                     player.physicsBody?.allowsRotation = false
+                    currentDirection = "right"
                 }
             
             case UISwipeGestureRecognizerDirection.Left:
@@ -150,9 +144,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.velocity.dy = 0.0
                     player.physicsBody?.velocity.dx = 0.0
                     player.physicsBody?.velocity.dx = -300.0
-                    deltaX = -20
-                    deltaY = 0
-                    currentDirection = "left"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
                     player.physicsBody?.friction = 100000000
@@ -162,6 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
                     player.physicsBody?.allowsRotation = false
+                    currentDirection = "left"
                 }
                 
             case UISwipeGestureRecognizerDirection.Up:
@@ -171,9 +163,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.velocity.dx = 0.0
                     player.physicsBody?.velocity.dy = 0.0
                     player.physicsBody?.velocity.dy = 300.0
-                    deltaX = 0
-                    deltaY = 20
-                    currentDirection = "up"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
                     player.physicsBody?.friction = 100000000
@@ -183,6 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
                     player.physicsBody?.allowsRotation = false
+                    currentDirection = "up"
                 }
                 
             case UISwipeGestureRecognizerDirection.Down:
@@ -192,10 +182,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.velocity.dx = 0.0
                     player.physicsBody?.velocity.dy = 0.0
                     player.physicsBody?.velocity.dy = -300.0
-
-                    deltaX = 0
-                    deltaY = -20
-                    currentDirection = "down"
                     player.physicsBody?.dynamic = true
                     player.physicsBody?.affectedByGravity = false
                     player.physicsBody?.friction = 100000000
@@ -205,13 +191,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     player.physicsBody?.collisionBitMask = Constants().playerCollisionBitMask
                     player.physicsBody?.contactTestBitMask = 3
                     player.physicsBody?.allowsRotation = false
+                    currentDirection = "down"
                 }
 
             default:
                 break
             }
             
-            turnPosition = player.position
+            turnPositions.append(player.position)
             lines.append(SKShapeNode())
         }
     }
@@ -219,25 +206,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: SKScene Delegate Methods
    
     override func update(currentTime: CFTimeInterval) {
-        
-        if player.texture!.size().width + player.position.x >= self.frame.width + 7 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.x = self.frame.width + 7 - player.texture!.size().width - 1
-        }
-        else if player.position.x <= 14 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.x = 15
-        }
-        
-        if player.texture!.size().height + player.position.y >= self.frame.height + 7 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.y = self.frame.height + 7 - player.texture!.size().height - 1
-        }
-        else if player.position.y <= 10 {
-            player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-            player.position.y = 11
-        }
-        
         // Do for each enemy.
         for enemy in enemies{
             // Constricts angular velocity within given range.
@@ -269,18 +237,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Remove line from scene before drawing a new line if not new direction.
         if lastDirection == currentDirection {
-            lines[lines.count-1].removeFromParent()
+            lines[lines.count - 1].removeFromParent()
         }
         
         // Define line path.
         var pathToDraw = CGPathCreateMutable()
-        CGPathMoveToPoint(pathToDraw, nil, player.position.x + deltaX, player.position.y + deltaY)
-        CGPathAddLineToPoint(pathToDraw, nil, turnPosition.x, turnPosition.y)
-        lines[lines.count-1].path = pathToDraw
-        lines[lines.count-1].strokeColor = UIColor.redColor()
+        CGPathMoveToPoint(pathToDraw, nil, player.position.x, player.position.y)
+        CGPathAddLineToPoint(pathToDraw, nil, turnPositions[turnPositions.count - 1].x, turnPositions[turnPositions.count - 1].y)
+        lines[lines.count - 1].path = pathToDraw
+        lines[lines.count - 1].strokeColor = UIColor.redColor()
         
         // Draw line on scene.
-        self.addChild(lines[lines.count-1])
+        self.addChild(lines[lines.count - 1])
+        
+        if lastDirection != currentDirection {
+            lines[lines.count - 2].removeFromParent()
+            
+            //var lastEndPoint = lines[lines.count - 2].frame
+            var lastPathToDraw = CGPathCreateMutable()
+            CGPathMoveToPoint(lastPathToDraw, nil, player.position.x, player.position.y)
+            CGPathAddLineToPoint(lastPathToDraw, nil, turnPositions[turnPositions.count - 2].x, turnPositions[turnPositions.count - 2].y)
+            lines[lines.count - 2].path = lastPathToDraw
+            lines[lines.count - 2].strokeColor = UIColor.redColor()
+            
+            self.addChild(lines[lines.count - 2])
+        }
         
         // Record current direction into lastDirection.
         lastDirection = currentDirection
