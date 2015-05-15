@@ -9,12 +9,13 @@
 public class Constants{
     //Bit Masks
     //Collision
-    let playerCollisionBitMask:UInt32 = 1
-    let enemyCollisionBitMask:UInt32 = 1
-    let borderCollisionBitMask:UInt32 = 8
+    //NOT BEING USED (I DON'T THINK!!!)
+    //let playerCollisionBitMask:UInt32 = 1
+    //let enemyCollisionBitMask:UInt32 = 1
+    //let borderCollisionBitMask:UInt32 = 5
     
     //Category
-    let playerCategoryBitMask:UInt32 = 1 << 0
-    let enemyCategoryBitMask:UInt32 = 1 << 1
-    let borderCategoryBitMask:UInt32 = 1 << 2
+    let playerCategoryBitMask:UInt32 =  1
+    let enemyCategoryBitMask:UInt32 = 2
+    let borderCategoryBitMask:UInt32 = 4
 }
